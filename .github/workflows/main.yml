@@ -54,6 +54,7 @@ jobs:
       - name: Zip Output
         run: |
           cd devtools-frontend/out/Default/gen
+          mv front_end/nevermore_app.html front_end/index.html
           zip -qq -r release.zip front_end
         
       - uses: ncipollo/release-action@v1
