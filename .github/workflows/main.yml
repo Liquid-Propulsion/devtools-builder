@@ -51,12 +51,16 @@ jobs:
           gn gen out/Default
           echo "is_debug=false" >> out/Default/args.gn
           autoninja -C out/Default
+          
       - name: Zip Output
         run: |
           cd devtools-frontend/out/Default/gen
           zip -qq -r release.zip front_end
         
-      - uses: ncipollo/release-action@v1
+      - name: Upload bundles to release
+        uses: svenstaro/upload-release-action@v2
         with:
-          artifacts: "release.zip"
-          token: ${{ secrets.GITHUB_TOKEN }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: devtools-frontend/out/Default/gen/release.zip
+          asset_name: release-bundle
+          tag: ${{ github.ref }}
