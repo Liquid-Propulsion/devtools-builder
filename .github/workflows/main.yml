@@ -57,7 +57,8 @@ jobs:
       - name: Zip Output
         run: |
           cd devtools-frontend/out/Default/gen
-          zip -qq -r release.zip front_end
+          mv front_end/nevermore_app.html front_end/index.html
+          zip -qq -r release.zip front_end/*
         
       - name: Upload bundles to release
         uses: svenstaro/upload-release-action@v2
