@@ -38,6 +38,7 @@ jobs:
       # Build Devtools
       - name: Download Devtools
         run: |
+          echo Force Run
           fetch devtools-frontend
           cd devtools-frontend
           git remote remove origin
